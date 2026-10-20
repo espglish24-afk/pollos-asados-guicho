@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#171310">
-<meta name="description" content="Pollos Asados Guicho. Pollo entero o mediano, salsas y acompañamientos. Pedidos a domicilio por WhatsApp.">
-<title>Pollos Asados Guicho | Pedidos a domicilio</title>
+<meta name="description" content="Pollos Asados Guicho - Orden de Compra y Pedidos a Domicilio.">
+<title>Pollos Asados Guicho | Orden de Compra</title>
 
 <style>
 :root {
@@ -22,11 +22,10 @@ body{
   font-family:Arial,Helvetica,sans-serif
 }
 .portada{
-  min-height:340px;padding:35px 20px;display:flex;
+  min-height:280px;padding:35px 20px;display:flex;
   align-items:center;justify-content:center;text-align:center;color:#fff;
   background:
     linear-gradient(90deg,rgba(0,0,0,.82),rgba(0,0,0,.38)),
-    url("portada-guicho.png") center/cover no-repeat,
     linear-gradient(135deg,#52140d,#171310)
 }
 .marca{max-width:720px;text-shadow:0 3px 12px #000}
@@ -36,17 +35,17 @@ body{
   font-size:12px;letter-spacing:1px
 }
 .portada h1{
-  margin:16px 0 8px;font-size:clamp(38px,9vw,68px);
+  margin:16px 0 8px;font-size:clamp(32px,7vw,54px);
   line-height:.98;font-weight:900;text-transform:uppercase
 }
 .portada h1 span{color:var(--amarillo)}
-.portada p{font-size:17px;line-height:1.5}
+.portada p{font-size:15px;line-height:1.5;margin:4px 0}
 .contenedor{
   max-width:1000px;margin:-20px auto 0;position:relative;
   padding:24px;background:var(--crema);border-radius:20px 20px 0 0
 }
 .titulo{text-align:center;margin-bottom:25px}
-.titulo h2{margin:0 0 8px;font-size:30px}
+.titulo h2{margin:0 0 8px;font-size:28px}
 .titulo p{margin:0;color:#6b6259}
 .columnas{display:grid;grid-template-columns:1fr 1fr;gap:22px}
 .panel{
@@ -55,9 +54,9 @@ body{
 }
 .panel h3{margin:0 0 17px;font-size:18px}
 label{display:block;margin:15px 0 7px;font-size:14px;font-weight:bold}
-input[type="text"],input[type="tel"],select{
-  width:100%;padding:13px;border:1px solid #d9d2c8;
-  border-radius:9px;font-size:16px;background:white;color:#28221d
+input[type="text"],input[type="tel"],input[type="email"],input[type="number"],select{
+  width:100%;padding:11px;border:1px solid #d9d2c8;
+  border-radius:9px;font-size:15px;background:white;color:#28221d
 }
 .gps-info{background:#fff5d9;border-radius:10px;padding:13px;font-size:14px;line-height:1.5}
 .boton{
@@ -68,21 +67,11 @@ input[type="text"],input[type="tel"],select{
 .boton:disabled{opacity:.6;cursor:wait}
 .estado-gps{margin:12px 0 0;color:#5b554d;font-size:13px;line-height:1.5;overflow-wrap:anywhere}
 .mapa-link{display:none;margin-top:10px;color:#1269ba;font-weight:bold;font-size:14px}
-.cantidad{display:flex;align-items:center;gap:14px;margin-top:15px}
-.cantidad button{
-  width:42px;height:42px;border:1px solid #ded3c4;border-radius:10px;
-  background:#fff6e5;font-size:23px;cursor:pointer
-}
-#cantidad{min-width:24px;text-align:center;font-weight:bold;font-size:19px}
-.opcion{
-  display:flex;align-items:center;gap:10px;padding:12px 0;
-  border-bottom:1px solid #eee6dc;cursor:pointer
-}
-.opcion:last-child{border-bottom:0}
-.opcion input{width:19px;height:19px;accent-color:var(--rojo);flex-shrink:0}
+.item-row{display:grid;grid-template-columns:2fr 1fr 1fr;gap:10px;align-items:center;margin-bottom:12px}
 .resumen{background:#fff1cf;border-radius:12px;padding:17px;margin-top:18px}
 .resumen h3{margin-top:0}
-.fila{display:flex;justify-content:space-between;gap:12px;margin:12px 0;font-size:14px}
+.fila{display:flex;justify-content:space-between;gap:12px;margin:10px 0;font-size:14px}
+.fila.total{font-size:18px;font-weight:bold;border-top:1px solid #d9d2c8;padding-top:10px;margin-top:12px}
 .fila strong{text-align:right}
 .nota{font-size:12px;color:#70665b;line-height:1.6}
 .boton-confirmar{margin-top:20px;background:var(--verde);color:white;font-size:18px;padding:17px}
@@ -90,11 +79,10 @@ input[type="text"],input[type="tel"],select{
 footer{padding:28px 18px;text-align:center;color:white;background:#100e0c;line-height:1.8}
 footer strong{color:var(--amarillo)}
 @media(max-width:700px){
-  .portada{min-height:300px}
   .contenedor{padding:17px 13px}
   .columnas{grid-template-columns:1fr;gap:0}
-  .titulo h2{font-size:27px}
-  .panel{padding:15px}
+  .item-row{grid-template-columns:1fr 1fr;gap:8px}
+  .item-row div:first-child{grid-column:span 2}
 }
 </style>
 </head>
@@ -102,38 +90,56 @@ footer strong{color:var(--amarillo)}
 <body>
 <header class="portada">
   <div class="marca">
-    <span class="etiqueta">PEDIDOS A DOMICILIO</span>
+    <span class="etiqueta">ORDEN DE COMPRA</span>
     <h1>Pollos Asados<br><span>GUICHO</span></h1>
-    <p>Sabor que se disfruta.<br>¡El auténtico sabor del pollo asado!</p>
+    <p>Tu calle, 123 · 12345 Tu ciudad (Provincia)</p>
+    <p>Tel: (34) 000 000 000</p>
   </div>
 </header>
 
 <main class="contenedor">
   <div class="titulo">
-    <h2>Haz tu pedido</h2>
-    <p>Rápido · Fácil · Directo por WhatsApp</p>
+    <h2>Formulario de Orden de Compra</h2>
+    <p>Complete los datos del envío y artículos requeridos</p>
   </div>
 
   <form id="pedidoForm">
     <div class="columnas">
       <section>
         <div class="panel">
-          <h3>Datos del cliente</h3>
-          <label for="nombre">Nombre completo *</label>
-          <input id="nombre" type="text" maxlength="100"
-                 autocomplete="name" placeholder="Tu nombre completo" required>
+          <h3>Información del Pedido</h3>
+          <label for="nroOrden">N.º de Orden de Compra</label>
+          <input id="nroOrden" type="text" value="12345678" readonly>
 
-          <label for="celular">Número de celular *</label>
-          <input id="celular" type="tel" maxlength="20"
-                 autocomplete="tel" inputmode="tel"
-                 placeholder="Tu número de celular" required>
+          <label for="factura">Factura N.º</label>
+          <input id="factura" type="text" value="123456" readonly>
+
+          <label for="formaEnvio">Forma de envío</label>
+          <input id="formaEnvio" type="text" value="Empresa de transporte">
         </div>
 
         <div class="panel">
-          <h3>Ubicación real de entrega</h3>
+          <h3>Datos del Destinatario (Enviar a)</h3>
+          <label for="nombre">Nombre completo *</label>
+          <input id="nombre" type="text" placeholder="Tu nombre" required>
+
+          <label for="empresa">Nombre de la empresa</label>
+          <input id="empresa" type="text" placeholder="Tu empresa">
+
+          <label for="celular">Teléfono / Celular *</label>
+          <input id="celular" type="tel" placeholder="(34) 000 000 000" required>
+
+          <label for="correo">Correo electrónico</label>
+          <input id="correo" type="email" placeholder="correo@ejemplo.com">
+
+          <label for="direccion">Dirección Postal</label>
+          <input id="direccion" type="text" placeholder="Tu calle, 123">
+        </div>
+
+        <div class="panel">
+          <h3>Ubicación GPS de Entrega</h3>
           <div class="gps-info">
-            Comparte la ubicación GPS del lugar donde recibirás el pedido.
-            No necesitas escribir tu dirección.
+            Comparte la ubicación GPS exacta del punto de entrega.
           </div>
           <button class="boton boton-gps" id="gpsBtn" type="button">
             📍 Obtener mi ubicación real
@@ -141,154 +147,83 @@ footer strong{color:var(--amarillo)}
           <p class="estado-gps" id="gpsEstado" role="status" aria-live="polite">
             Aún no se ha compartido la ubicación.
           </p>
-          <a class="mapa-link" id="mapaLink" href="#"
-             target="_blank" rel="noopener">Ver ubicación en Google Maps</a>
+          <a class="mapa-link" id="mapaLink" href="#" target="_blank" rel="noopener">Ver ubicación en Google Maps</a>
         </div>
       </section>
 
       <section>
         <div class="panel">
-          <h3>🍗 Elige tu pollo</h3>
+          <h3>🛒 Artículos de la Orden</h3>
 
-          <label for="tipoPollo">Tipo de pollo *</label>
-          <select id="tipoPollo" required>
-            <option value="Pollo entero">Pollo entero</option>
-            <option value="Pollo mediano" selected>Pollo mediano</option>
-          </select>
-
-          <p class="nota">
-            Tu pollo incluye arroz, tortillas y salsas.
-            Las salsas se entregan por separado.
-          </p>
-
-          <label>Cantidad de pollos</label>
-          <div class="cantidad">
-            <button type="button" id="menos" aria-label="Quitar un pollo">−</button>
-            <span id="cantidad">1</span>
-            <button type="button" id="mas" aria-label="Agregar un pollo">+</button>
+          <div class="item-row">
+            <div><strong>Ref. / Descripción</strong><br><small>12345-A - Artículo A</small></div>
+            <div><label style="margin:0;font-size:11px">Cant.</label><input type="number" id="cantA" min="0" value="1"></div>
+            <div><label style="margin:0;font-size:11px">P. Unit</label><input type="text" value="200,00 €" readonly></div>
           </div>
 
-          <h3 style="margin-top:24px">🥣 Elige tus salsas</h3>
-          <p class="nota">Incluidas con tu pollo. Puedes elegir una, ambas o ninguna.</p>
-
-          <label class="opcion">
-            <input type="checkbox" id="roja">
-            <span>Salsa roja</span>
-          </label>
-          <label class="opcion">
-            <input type="checkbox" id="verde">
-            <span>Salsa verde</span>
-          </label>
-
-          <h3 style="margin-top:24px">🍽️ Acompañamientos</h3>
-          <p class="nota">
-            Tu pedido incluye arroz, tortillas y salsas.
-            Marca solamente lo que NO deseas recibir.
-          </p>
-
-          <label class="opcion">
-            <input type="checkbox" id="sinTortillas">
-            <span>No deseo tortillas</span>
-          </label>
-          <label class="opcion">
-            <input type="checkbox" id="sinArroz">
-            <span>No deseo arroz</span>
-          </label>
-          <label class="opcion">
-            <input type="checkbox" id="sinSalsas">
-            <span>No deseo ninguna salsa</span>
-          </label>
+          <div class="item-row">
+            <div><strong>Ref. / Descripción</strong><br><small>12345-B - Artículo B</small></div>
+            <div><label style="margin:0;font-size:11px">Cant.</label><input type="number" id="cantB" min="0" value="2"></div>
+            <div><label style="margin:0;font-size:11px">P. Unit</label><input type="text" value="200,00 €" readonly></div>
+          </div>
 
           <div class="resumen">
-            <h3>📋 Resumen del pedido</h3>
-            <div class="fila"><span>Tipo de pollo</span><strong id="resumenTipo">Pollo mediano</strong></div>
-            <div class="fila"><span>Cantidad</span><strong id="resumenCantidad">1</strong></div>
-            <div class="fila"><span>Salsas</span><strong id="resumenSalsas">Ninguna</strong></div>
-            <div class="fila"><span>Tortillas</span><strong id="resumenTortillas">Incluidas</strong></div>
-            <div class="fila"><span>Arroz</span><strong id="resumenArroz">Incluido</strong></div>
-            <p class="nota">El precio se confirma directamente con el negocio.</p>
+            <h3>📋 Desglose Financiero</h3>
+            <div class="fila"><span>Subtotal</span><strong id="resSubtotal">600,00 €</strong></div>
+            <div class="fila"><span>Envío y manipulación</span><strong id="resEnvio">20,00 €</strong></div>
+            <div class="fila"><span>Tipo impositivo (IVA)</span><strong>8,60 %</strong></div>
+            <div class="fila"><span>Impuesto sobre ventas</span><strong id="resImpuesto">51,60 €</strong></div>
+            <div class="fila total"><span>TOTAL</span><strong id="resTotal" style="color:var(--rojo)">671,60 €</strong></div>
           </div>
         </div>
       </section>
     </div>
 
     <button class="boton boton-confirmar" id="confirmar" type="submit">
-      Confirmar pedido por WhatsApp
+      Confirmar Orden por WhatsApp
     </button>
 
     <p class="terminos">
-      <strong>Términos y condiciones:</strong><br>
-      Una vez confirmado el pedido, no se podrán realizar cambios.
-      Una vez entregado, cualquier solicitud adicional deberá realizarse
-      mediante un nuevo pedido por separado.
+      <strong>Condiciones de pago y envío:</strong><br>
+      Una vez enviada la orden de compra, no se podrán realizar modificaciones sin previo aviso.
     </p>
   </form>
 </main>
 
 <footer>
-  <strong>¡Gracias por tu preferencia!</strong><br>
-  Pedidos a domicilio por WhatsApp<br>
-  <strong>+52 33 1905 3634</strong><br>
-  Pollo asado · Salsas por separado · Atención a domicilio
+  <strong>Pollos Asados Guicho</strong><br>
+  Tu calle, 123 · 12345 Tu ciudad (Provincia)<br>
+  <strong>(34) 000 000 000</strong>
 </footer>
 
 <script>
 const WHATSAPP_NUMBER = "523319053634";
-const GOOGLE_SHEETS_URL = "https://script.google.com/macros/s/AKfycbztRheBzlgp1Rw9S4VwFZXtmGE1j-i6IZ5G0wdjKn2F7g6rabfRbnO3pHGNuvTrFHhJ/exec"; 
+const GOOGLE_SHEETS_URL = "https://script.google.com/macros/s/AKfycbztRheBzlgp1Rw9S4VwFZXtmGE1j-i6IZ5G0wdjKn2F7g6rabfRbnO3pHGNuvTrFHhJ/exec";
 
-let cantidad = 1;
 let latitud = null;
 let longitud = null;
 
 const $ = id => document.getElementById(id);
 
-function actualizarResumen() {
-  $("cantidad").textContent = cantidad;
-  $("resumenCantidad").textContent = cantidad;
-  $("resumenTipo").textContent = $("tipoPollo").value;
+function calcularTotales() {
+  const cantA = parseInt($("cantA").value) || 0;
+  const cantB = parseInt($("cantB").value) || 0;
+  const precioUnit = 200;
 
-  const salsas = [];
-  if ($("roja").checked) salsas.push("Roja");
-  if ($("verde").checked) salsas.push("Verde");
+  const subtotal = (cantA * precioUnit) + (cantB * precioUnit);
+  const envio = 20;
+  const tasaImpuesto = 0.086;
+  const impuesto = subtotal * tasaImpuesto;
+  const total = subtotal + envio + impuesto;
 
-  $("resumenSalsas").textContent =
-    $("sinSalsas").checked ? "Ninguna" :
-    (salsas.length ? salsas.join(" y ") : "Ninguna");
-
-  $("resumenTortillas").textContent =
-    $("sinTortillas").checked ? "No incluidas" : "Incluidas";
-
-  $("resumenArroz").textContent =
-    $("sinArroz").checked ? "No incluido" : "Incluido";
+  $("resSubtotal").textContent = subtotal.toFixed(2).replace(".", ",") + " €";
+  $("resEnvio").textContent = envio.toFixed(2).replace(".", ",") + " €";
+  $("resImpuesto").textContent = impuesto.toFixed(2).replace(".", ",") + " €";
+  $("resTotal").textContent = total.toFixed(2).replace(".", ",") + " €";
 }
 
-$("menos").addEventListener("click", () => {
-  if (cantidad > 1) cantidad--;
-  actualizarResumen();
-});
-
-$("mas").addEventListener("click", () => {
-  if (cantidad < 20) cantidad++;
-  actualizarResumen();
-});
-
-["tipoPollo","roja","verde","sinTortillas","sinArroz","sinSalsas"]
-.forEach(id => $(id).addEventListener("change", actualizarResumen));
-
-$("sinSalsas").addEventListener("change", function() {
-  if (this.checked) {
-    $("roja").checked = false;
-    $("verde").checked = false;
-  }
-  actualizarResumen();
-});
-
-["roja","verde"].forEach(id => {
-  $(id).addEventListener("change", function() {
-    if (this.checked) $("sinSalsas").checked = false;
-    actualizarResumen();
-  });
-});
+$("cantA").addEventListener("input", calcularTotales);
+$("cantB").addEventListener("input", calcularTotales);
 
 $("gpsBtn").addEventListener("click", () => {
   if (!navigator.geolocation) {
@@ -307,14 +242,12 @@ $("gpsBtn").addEventListener("click", () => {
       const url = "https://www.google.com/maps?q=" + latitud + "," + longitud;
       $("mapaLink").href = url;
       $("mapaLink").style.display = "inline-block";
-      $("gpsEstado").textContent =
-        "Ubicación obtenida. Comprueba que el punto sea el lugar de entrega.";
+      $("gpsEstado").textContent = "Ubicación obtenida exitosamente.";
       $("gpsBtn").textContent = "Ubicación obtenida";
       $("gpsBtn").disabled = false;
     },
     () => {
-      $("gpsEstado").textContent =
-        "No se obtuvo la ubicación. Activa el GPS y permite el acceso en el navegador.";
+      $("gpsEstado").textContent = "No se obtuvo la ubicación GPS.";
       $("gpsBtn").textContent = "Intentar de nuevo";
       $("gpsBtn").disabled = false;
     },
@@ -326,43 +259,38 @@ $("pedidoForm").addEventListener("submit", async event => {
   event.preventDefault();
   if (!$("pedidoForm").reportValidity()) return;
 
-  if (latitud === null || longitud === null) {
-    alert("Comparte primero la ubicación GPS real de entrega.");
-    return;
-  }
-
   const btnConfirmar = $("confirmar");
   btnConfirmar.disabled = true;
-  btnConfirmar.textContent = "Procesando pedido...";
+  btnConfirmar.textContent = "Procesando orden...";
 
   const nombre = $("nombre").value.trim();
+  const empresa = $("empresa").value.trim();
   const celular = $("celular").value.trim();
-  const tipoPollo = $("tipoPollo").value;
+  const correo = $("correo").value.trim();
+  const direccion = $("direccion").value.trim();
 
-  const salsas = $("sinSalsas").checked ? [] : [
-    ...($("roja").checked ? ["Salsa roja"] : []),
-    ...($("verde").checked ? ["Salsa verde"] : [])
-  ];
+  const cantA = $("cantA").value;
+  const cantB = $("cantB").value;
+  const subtotal = $("resSubtotal").textContent;
+  const total = $("resTotal").textContent;
 
-  const ubicacion = "https://www.google.com/maps?q=" + latitud + "," + longitud;
-  const textoSalsas = salsas.length ? salsas.join(" y ") + " (separadas)" : "Ninguna";
-  const textoTortillas = $("sinTortillas").checked ? "No desea" : "Incluidas";
-  const textoArroz = $("sinArroz").checked ? "No deseo" : "Incluido";
+  const ubicacion = latitud && longitud ? "https://www.google.com/maps?q=" + latitud + "," + longitud : "No especificada";
 
-  // Datos para enviar a Google Sheets
   const datosPedido = {
+    nroOrden: "12345678",
+    factura: "123456",
     nombre: nombre,
+    empresa: empresa,
     celular: celular,
-    tipoPollo: tipoPollo,
-    cantidad: cantidad,
-    salsas: textoSalsas,
-    tortillas: textoTortillas,
-    arroz: textoArroz,
-    ubicacion: ubicacion,
-    coordenadas: latitud + ", " + longitud
+    correo: correo,
+    direccion: direccion,
+    articuloA_cant: cantA,
+    articuloB_cant: cantB,
+    subtotal: subtotal,
+    total: total,
+    ubicacion: ubicacion
   };
 
-  // Guardar en Google Sheets
   try {
     await fetch(GOOGLE_SHEETS_URL, {
       method: "POST",
@@ -374,37 +302,31 @@ $("pedidoForm").addEventListener("submit", async event => {
     console.error("Error al guardar en Google Sheets:", e);
   }
 
-  // Crear mensaje y redirigir a WhatsApp
   const mensaje = [
-    "¡Hola! Quiero confirmar un pedido de Pollos Asados Guicho.",
+    "¡Hola! Confirmación de Orden de Compra N.º 12345678 - Pollos Asados Guicho.",
     "",
     "DATOS DEL CLIENTE",
     "Nombre: " + nombre,
-    "Celular: " + celular,
+    "Empresa: " + (empresa || "N/A"),
+    "Teléfono: " + celular,
+    "Correo: " + (correo || "N/A"),
+    "Dirección: " + (direccion || "N/A"),
     "",
-    "DESGLOSE DEL PEDIDO",
-    "Producto: " + tipoPollo,
-    "Cantidad: " + cantidad,
-    "Salsas: " + textoSalsas,
-    "Tortillas: " + textoTortillas,
-    "Arroz: " + textoArroz,
+    "DETALLE DE LA ORDEN",
+    "Artículo A (12345-A): " + cantA + " unidad(es)",
+    "Artículo B (12345-B): " + cantB + " unidad(es)",
     "",
-    "UBICACIÓN REAL DE ENTREGA",
-    ubicacion,
-    "Coordenadas: " + latitud + ", " + longitud,
+    "RESUMEN FINANCIERO",
+    "Subtotal: " + subtotal,
+    "TOTAL: " + total,
     "",
-    "TÉRMINOS Y CONDICIONES",
-    "Una vez confirmado el pedido no se pueden realizar cambios. Después de la entrega, cualquier pedido adicional deberá realizarse por separado."
+    "UBICACIÓN GPS DE ENTREGA",
+    ubicacion
   ].join("\n");
 
-  const whatsappURL = "https://wa.me/" + WHATSAPP_NUMBER +
-    "?text=" + encodeURIComponent(mensaje);
-
+  const whatsappURL = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(mensaje);
   window.location.href = whatsappURL;
 });
-
-actualizarResumen();
 </script>
 </body>
-                                                      </html>
-                                                      
+</html>
