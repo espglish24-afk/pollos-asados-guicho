@@ -4,297 +4,103 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#15110f">
+<meta name="theme-color" content="#171310">
+<meta name="description" content="Pollos Asados Guicho. Pollo entero o mediano, salsas y acompañamientos. Pedidos a domicilio por WhatsApp.">
 <title>Pollos Asados Guicho | Pedidos a domicilio</title>
-<meta name="description" content="Pide tu pollo asado mediano con salsa roja, verde o ambas. Pollos Asados Guicho, pedidos a domicilio.">
 
 <style>
 :root {
-  --negro: #171310;
-  --rojo: #c71920;
-  --amarillo: #ffca28;
-  --crema: #fffaf0;
-  --verde: #14864c;
-  --texto: #28221d;
+  --negro:#171310;
+  --rojo:#c71920;
+  --amarillo:#ffca28;
+  --crema:#fffaf0;
+  --verde:#14864c;
+  --texto:#28221d;
 }
-
-* { box-sizing: border-box; }
-
-body {
-  margin: 0;
-  background: var(--negro);
-  color: var(--texto);
-  font-family: Arial, Helvetica, sans-serif;
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--negro);color:var(--texto);
+  font-family:Arial,Helvetica,sans-serif
 }
-
-.portada {
-  min-height: 330px;
-  padding: 32px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: white;
+.portada{
+  min-height:340px;padding:35px 20px;display:flex;
+  align-items:center;justify-content:center;text-align:center;color:#fff;
   background:
-    linear-gradient(90deg, rgba(0,0,0,.86), rgba(0,0,0,.35)),
+    linear-gradient(90deg,rgba(0,0,0,.82),rgba(0,0,0,.38)),
     url("portada-guicho.png") center/cover no-repeat,
-    linear-gradient(135deg, #52140d, #171310);
+    linear-gradient(135deg,#52140d,#171310)
 }
-
-.marca {
-  max-width: 720px;
-  text-shadow: 0 3px 12px #000;
+.marca{max-width:720px;text-shadow:0 3px 12px #000}
+.etiqueta{
+  display:inline-block;padding:8px 14px;border-radius:30px;
+  background:var(--amarillo);color:#21150a;font-weight:800;
+  font-size:12px;letter-spacing:1px
 }
-
-.etiqueta {
-  display: inline-block;
-  padding: 8px 14px;
-  border-radius: 30px;
-  background: var(--amarillo);
-  color: #21150a;
-  font-weight: 800;
-  font-size: 12px;
-  letter-spacing: 1px;
+.portada h1{
+  margin:16px 0 8px;font-size:clamp(38px,9vw,68px);
+  line-height:.98;font-weight:900;text-transform:uppercase
 }
-
-.portada h1 {
-  margin: 16px 0 8px;
-  font-size: clamp(38px, 9vw, 68px);
-  line-height: .98;
-  font-weight: 900;
-  text-transform: uppercase;
+.portada h1 span{color:var(--amarillo)}
+.portada p{font-size:17px;line-height:1.5}
+.contenedor{
+  max-width:1000px;margin:-20px auto 0;position:relative;
+  padding:24px;background:var(--crema);border-radius:20px 20px 0 0
 }
-
-.portada h1 span { color: var(--amarillo); }
-
-.portada p {
-  font-size: 17px;
-  line-height: 1.5;
+.titulo{text-align:center;margin-bottom:25px}
+.titulo h2{margin:0 0 8px;font-size:30px}
+.titulo p{margin:0;color:#6b6259}
+.columnas{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.panel{
+  border:1px solid #e8e0d5;border-radius:15px;padding:18px;
+  background:#fff;margin-bottom:18px
 }
-
-.contenedor {
-  max-width: 1000px;
-  margin: -20px auto 0;
-  position: relative;
-  padding: 24px;
-  background: var(--crema);
-  border-radius: 20px 20px 0 0;
+.panel h3{margin:0 0 17px;font-size:18px}
+label{display:block;margin:15px 0 7px;font-size:14px;font-weight:bold}
+input[type="text"],input[type="tel"],select{
+  width:100%;padding:13px;border:1px solid #d9d2c8;
+  border-radius:9px;font-size:16px;background:white;color:#28221d
 }
-
-.titulo {
-  text-align: center;
-  margin-bottom: 25px;
+.gps-info{background:#fff5d9;border-radius:10px;padding:13px;font-size:14px;line-height:1.5}
+.boton{
+  display:block;width:100%;padding:14px;border:0;border-radius:10px;
+  font-weight:bold;font-size:16px;cursor:pointer;text-align:center
 }
-
-.titulo h2 {
-  margin: 0 0 8px;
-  font-size: 30px;
+.boton-gps{margin-top:12px;color:white;background:#1678d2}
+.boton:disabled{opacity:.6;cursor:wait}
+.estado-gps{margin:12px 0 0;color:#5b554d;font-size:13px;line-height:1.5;overflow-wrap:anywhere}
+.mapa-link{display:none;margin-top:10px;color:#1269ba;font-weight:bold;font-size:14px}
+.cantidad{display:flex;align-items:center;gap:14px;margin-top:15px}
+.cantidad button{
+  width:42px;height:42px;border:1px solid #ded3c4;border-radius:10px;
+  background:#fff6e5;font-size:23px;cursor:pointer
 }
-
-.titulo p {
-  margin: 0;
-  color: #6b6259;
+#cantidad{min-width:24px;text-align:center;font-weight:bold;font-size:19px}
+.opcion{
+  display:flex;align-items:center;gap:10px;padding:12px 0;
+  border-bottom:1px solid #eee6dc;cursor:pointer
 }
-
-.columnas {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 22px;
-}
-
-.panel {
-  border: 1px solid #e8e0d5;
-  border-radius: 15px;
-  padding: 18px;
-  background: #fff;
-  margin-bottom: 18px;
-}
-
-.panel h3 {
-  margin: 0 0 17px;
-  font-size: 18px;
-}
-
-label {
-  display: block;
-  margin: 15px 0 7px;
-  font-size: 14px;
-  font-weight: bold;
-}
-
-input[type="text"],
-input[type="tel"] {
-  width: 100%;
-  padding: 13px;
-  border: 1px solid #d9d2c8;
-  border-radius: 9px;
-  font-size: 16px;
-  background: white;
-}
-
-.gps-info {
-  background: #fff5d9;
-  border-radius: 10px;
-  padding: 13px;
-  font-size: 14px;
-  line-height: 1.5;
-}
-
-.boton {
-  display: block;
-  width: 100%;
-  padding: 14px;
-  border: 0;
-  border-radius: 10px;
-  font-weight: bold;
-  font-size: 16px;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-}
-
-.boton-gps {
-  margin-top: 12px;
-  color: white;
-  background: #1678d2;
-}
-
-.boton-gps:disabled,
-.boton-confirmar:disabled {
-  opacity: .6;
-  cursor: wait;
-}
-
-.estado-gps {
-  margin: 12px 0 0;
-  color: #5b554d;
-  font-size: 13px;
-  line-height: 1.5;
-  overflow-wrap: anywhere;
-}
-
-.mapa-link {
-  display: none;
-  margin-top: 10px;
-  color: #1269ba;
-  font-weight: bold;
-  font-size: 14px;
-}
-
-.producto {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.producto strong { line-height: 1.4; }
-
-.cantidad {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-top: 15px;
-}
-
-.cantidad button {
-  width: 42px;
-  height: 42px;
-  border: 1px solid #ded3c4;
-  border-radius: 10px;
-  background: #fff6e5;
-  font-size: 23px;
-  cursor: pointer;
-}
-
-#cantidad {
-  min-width: 24px;
-  text-align: center;
-  font-weight: bold;
-  font-size: 19px;
-}
-
-.opcion {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px 0;
-  border-bottom: 1px solid #eee6dc;
-  cursor: pointer;
-}
-
-.opcion:last-child { border-bottom: 0; }
-
-.opcion input {
-  width: 19px;
-  height: 19px;
-  accent-color: var(--rojo);
-}
-
-.resumen {
-  background: #fff1cf;
-  border-radius: 12px;
-  padding: 17px;
-  margin-top: 18px;
-}
-
-.resumen h3 { margin-top: 0; }
-
-.fila {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  margin: 12px 0;
-  font-size: 14px;
-}
-
-.fila strong { text-align: right; }
-
-.nota {
-  font-size: 12px;
-  color: #70665b;
-  line-height: 1.6;
-}
-
-.boton-confirmar {
-  margin-top: 20px;
-  background: var(--verde);
-  color: white;
-  font-size: 18px;
-  padding: 17px;
-}
-
-.terminos {
-  margin: 17px auto 0;
-  max-width: 680px;
-  text-align: center;
-  color: #7d756d;
-  font-size: 11px;
-  line-height: 1.6;
-}
-
-footer {
-  padding: 28px 18px;
-  text-align: center;
-  color: white;
-  background: #100e0c;
-  line-height: 1.8;
-}
-
-footer strong { color: var(--amarillo); }
-
-@media (max-width: 700px) {
-  .portada { min-height: 300px; }
-  .contenedor { padding: 17px 13px; }
-  .columnas { grid-template-columns: 1fr; gap: 0; }
-  .titulo h2 { font-size: 27px; }
-  .panel { padding: 15px; }
+.opcion:last-child{border-bottom:0}
+.opcion input{width:19px;height:19px;accent-color:var(--rojo);flex-shrink:0}
+.resumen{background:#fff1cf;border-radius:12px;padding:17px;margin-top:18px}
+.resumen h3{margin-top:0}
+.fila{display:flex;justify-content:space-between;gap:12px;margin:12px 0;font-size:14px}
+.fila strong{text-align:right}
+.nota{font-size:12px;color:#70665b;line-height:1.6}
+.boton-confirmar{margin-top:20px;background:var(--verde);color:white;font-size:18px;padding:17px}
+.terminos{margin:17px auto 0;max-width:680px;text-align:center;color:#7d756d;font-size:11px;line-height:1.6}
+footer{padding:28px 18px;text-align:center;color:white;background:#100e0c;line-height:1.8}
+footer strong{color:var(--amarillo)}
+@media(max-width:700px){
+  .portada{min-height:300px}
+  .contenedor{padding:17px 13px}
+  .columnas{grid-template-columns:1fr;gap:0}
+  .titulo h2{font-size:27px}
+  .panel{padding:15px}
 }
 </style>
 </head>
 
 <body>
-
 <header class="portada">
   <div class="marca">
     <span class="etiqueta">PEDIDOS A DOMICILIO</span>
@@ -311,11 +117,9 @@ footer strong { color: var(--amarillo); }
 
   <form id="pedidoForm">
     <div class="columnas">
-
       <section>
         <div class="panel">
           <h3>Datos del cliente</h3>
-
           <label for="nombre">Nombre completo *</label>
           <input id="nombre" type="text" maxlength="100"
                  autocomplete="name" placeholder="Tu nombre completo" required>
@@ -328,80 +132,82 @@ footer strong { color: var(--amarillo); }
 
         <div class="panel">
           <h3>Ubicación real de entrega</h3>
-
           <div class="gps-info">
-            Para entregar tu pedido, comparte la ubicación GPS
-            del lugar donde recibirás el pollo. No necesitas escribir
-            tu dirección.
+            Comparte la ubicación GPS del lugar donde recibirás el pedido.
+            No necesitas escribir tu dirección.
           </div>
-
           <button class="boton boton-gps" id="gpsBtn" type="button">
             📍 Obtener mi ubicación real
           </button>
-
           <p class="estado-gps" id="gpsEstado" role="status" aria-live="polite">
             Aún no se ha compartido la ubicación.
           </p>
-
-          <a class="mapa-link" id="mapaLink"
-             href="#" target="_blank" rel="noopener">
-            Ver ubicación en Google Maps
-          </a>
+          <a class="mapa-link" id="mapaLink" href="#"
+             target="_blank" rel="noopener">Ver ubicación en Google Maps</a>
         </div>
       </section>
 
       <section>
         <div class="panel">
-          <h3>Tu pedido</h3>
+          <h3>🍗 Elige tu pollo</h3>
 
-          <div class="producto">
-            <div>
-              <strong>🍗 Pollo entero mediano</strong>
-              <p class="nota">Aproximadamente 1.2–1.5 kg</p>
-            </div>
-          </div>
+          <label for="tipoPollo">Tipo de pollo *</label>
+          <select id="tipoPollo" required>
+            <option value="Pollo entero">Pollo entero</option>
+            <option value="Pollo mediano" selected>Pollo mediano</option>
+          </select>
 
+          <p class="nota">
+            Tu pollo incluye arroz, tortillas y salsas.
+            Las salsas se entregan por separado.
+          </p>
+
+          <label>Cantidad de pollos</label>
           <div class="cantidad">
             <button type="button" id="menos" aria-label="Quitar un pollo">−</button>
             <span id="cantidad">1</span>
             <button type="button" id="mas" aria-label="Agregar un pollo">+</button>
           </div>
 
-          <h3 style="margin-top:25px;">Salsas (separadas del pollo)</h3>
-          <p class="nota">Selecciona las salsas que deseas.</p>
+          <h3 style="margin-top:24px">🥣 Elige tus salsas</h3>
+          <p class="nota">Incluidas con tu pollo. Puedes elegir una, ambas o ninguna.</p>
 
           <label class="opcion">
             <input type="checkbox" id="roja">
-            <span>🥣 Salsa roja</span>
+            <span>Salsa roja</span>
           </label>
-
           <label class="opcion">
             <input type="checkbox" id="verde">
-            <span>🥣 Salsa verde</span>
+            <span>Salsa verde</span>
+          </label>
+
+          <h3 style="margin-top:24px">🍽️ Acompañamientos</h3>
+          <p class="nota">
+            Tu pedido incluye arroz, tortillas y salsas.
+            Marca solamente lo que NO deseas recibir.
+          </p>
+
+          <label class="opcion">
+            <input type="checkbox" id="sinTortillas">
+            <span>No deseo tortillas</span>
+          </label>
+          <label class="opcion">
+            <input type="checkbox" id="sinArroz">
+            <span>No deseo arroz</span>
+          </label>
+          <label class="opcion">
+            <input type="checkbox" id="sinSalsas">
+            <span>No deseo ninguna salsa</span>
           </label>
 
           <div class="resumen">
-            <h3>Resumen del pedido</h3>
-            <div class="fila">
-              <span>Pollo entero mediano</span>
-              <strong id="resumenPollos">1</strong>
-            </div>
-            <div class="fila">
-              <span>Salsa roja</span>
-              <strong id="resumenRoja">No seleccionada</strong>
-            </div>
-            <div class="fila">
-              <span>Salsa verde</span>
-              <strong id="resumenVerde">No seleccionada</strong>
-            </div>
-            <div class="fila">
-              <span>Total de pollos</span>
-              <strong id="totalPollos">1</strong>
-            </div>
-            <p class="nota">
-              No incluye arroz ni tortillas. El precio se confirma
-              directamente con el negocio.
-            </p>
+            <h3>📋 Resumen del pedido</h3>
+            <div class="fila"><span>Tipo de pollo</span><strong id="resumenTipo">Pollo mediano</strong></div>
+            <div class="fila"><span>Cantidad</span><strong id="resumenCantidad">1</strong></div>
+            <div class="fila"><span>Salsas</span><strong id="resumenSalsas">Ninguna</strong></div>
+            <div class="fila"><span>Tortillas</span><strong id="resumenTortillas">Incluidas</strong></div>
+            <div class="fila"><span>Arroz</span><strong id="resumenArroz">Incluido</strong></div>
+            <p class="nota">El precio se confirma directamente con el negocio.</p>
           </div>
         </div>
       </section>
@@ -414,8 +220,8 @@ footer strong { color: var(--amarillo); }
     <p class="terminos">
       <strong>Términos y condiciones:</strong><br>
       Una vez confirmado el pedido, no se podrán realizar cambios.
-      Una vez entregado el pedido, cualquier solicitud adicional
-      deberá realizarse mediante un nuevo pedido por separado.
+      Una vez entregado, cualquier solicitud adicional deberá realizarse
+      mediante un nuevo pedido por separado.
     </p>
   </form>
 </main>
@@ -429,7 +235,6 @@ footer strong { color: var(--amarillo); }
 
 <script>
 const WHATSAPP_NUMBER = "523319053634";
-
 let cantidad = 1;
 let latitud = null;
 let longitud = null;
@@ -438,12 +243,22 @@ const $ = id => document.getElementById(id);
 
 function actualizarResumen() {
   $("cantidad").textContent = cantidad;
-  $("resumenPollos").textContent = cantidad;
-  $("totalPollos").textContent = cantidad;
-  $("resumenRoja").textContent = $("roja").checked
-    ? "Sí, por separado" : "No seleccionada";
-  $("resumenVerde").textContent = $("verde").checked
-    ? "Sí, por separado" : "No seleccionada";
+  $("resumenCantidad").textContent = cantidad;
+  $("resumenTipo").textContent = $("tipoPollo").value;
+
+  const salsas = [];
+  if ($("roja").checked) salsas.push("Roja");
+  if ($("verde").checked) salsas.push("Verde");
+
+  $("resumenSalsas").textContent =
+    $("sinSalsas").checked ? "Ninguna" :
+    (salsas.length ? salsas.join(" y ") : "Ninguna");
+
+  $("resumenTortillas").textContent =
+    $("sinTortillas").checked ? "No incluidas" : "Incluidas";
+
+  $("resumenArroz").textContent =
+    $("sinArroz").checked ? "No incluido" : "Incluido";
 }
 
 $("menos").addEventListener("click", () => {
@@ -456,13 +271,27 @@ $("mas").addEventListener("click", () => {
   actualizarResumen();
 });
 
-$("roja").addEventListener("change", actualizarResumen);
-$("verde").addEventListener("change", actualizarResumen);
+["tipoPollo","roja","verde","sinTortillas","sinArroz","sinSalsas"]
+.forEach(id => $(id).addEventListener("change", actualizarResumen));
+
+$("sinSalsas").addEventListener("change", function() {
+  if (this.checked) {
+    $("roja").checked = false;
+    $("verde").checked = false;
+  }
+  actualizarResumen();
+});
+
+["roja","verde"].forEach(id => {
+  $(id).addEventListener("change", function() {
+    if (this.checked) $("sinSalsas").checked = false;
+    actualizarResumen();
+  });
+});
 
 $("gpsBtn").addEventListener("click", () => {
   if (!navigator.geolocation) {
-    $("gpsEstado").textContent =
-      "Tu navegador no permite obtener la ubicación GPS.";
+    $("gpsEstado").textContent = "Tu navegador no permite obtener GPS.";
     return;
   }
 
@@ -474,50 +303,43 @@ $("gpsBtn").addEventListener("click", () => {
       latitud = position.coords.latitude;
       longitud = position.coords.longitude;
 
-      const url = "https://www.google.com/maps?q=" +
-        latitud + "," + longitud;
-
+      const url = "https://www.google.com/maps?q=" + latitud + "," + longitud;
       $("mapaLink").href = url;
       $("mapaLink").style.display = "inline-block";
       $("gpsEstado").textContent =
-        "Ubicación obtenida correctamente. Revisa que el punto del mapa sea el lugar de entrega.";
-
+        "Ubicación obtenida. Comprueba que el punto sea el lugar de entrega.";
       $("gpsBtn").textContent = "Ubicación obtenida";
       $("gpsBtn").disabled = false;
     },
     () => {
       $("gpsEstado").textContent =
-        "No pudimos obtener tu ubicación. Activa el GPS y permite el acceso a la ubicación en tu navegador.";
+        "No se obtuvo la ubicación. Activa el GPS y permite el acceso en el navegador.";
       $("gpsBtn").textContent = "Intentar de nuevo";
       $("gpsBtn").disabled = false;
     },
-    {
-      enableHighAccuracy: true,
-      timeout: 20000,
-      maximumAge: 0
-    }
+    { enableHighAccuracy: true, timeout: 20000, maximumAge: 0 }
   );
 });
 
 $("pedidoForm").addEventListener("submit", event => {
   event.preventDefault();
-
   if (!$("pedidoForm").reportValidity()) return;
 
   if (latitud === null || longitud === null) {
-    alert("Primero debes compartir la ubicación GPS real de entrega.");
+    alert("Comparte primero la ubicación GPS real de entrega.");
     return;
   }
 
   const nombre = $("nombre").value.trim();
   const celular = $("celular").value.trim();
+  const tipoPollo = $("tipoPollo").value;
 
-  const salsas = [];
-  if ($("roja").checked) salsas.push("Salsa roja, separada");
-  if ($("verde").checked) salsas.push("Salsa verde, separada");
+  const salsas = $("sinSalsas").checked ? [] : [
+    ...($("roja").checked ? ["Salsa roja"] : []),
+    ...($("verde").checked ? ["Salsa verde"] : [])
+  ];
 
-  const ubicacion =
-    "https://www.google.com/maps?q=" + latitud + "," + longitud;
+  const ubicacion = "https://www.google.com/maps?q=" + latitud + "," + longitud;
 
   const mensaje = [
     "¡Hola! Quiero confirmar un pedido de Pollos Asados Guicho.",
@@ -527,20 +349,21 @@ $("pedidoForm").addEventListener("submit", event => {
     "Celular: " + celular,
     "",
     "DESGLOSE DEL PEDIDO",
-    "Producto: Pollo entero mediano",
+    "Producto: " + tipoPollo,
     "Cantidad: " + cantidad,
-    "Salsas: " + (salsas.length ? salsas.join(" y ") : "Ninguna"),
-    "Acompañamientos: No incluye arroz ni tortillas.",
+    "Salsas: " + (salsas.length ? salsas.join(" y ") + " (separadas)" : "Ninguna"),
+    "Tortillas: " + ($("sinTortillas").checked ? "No desea" : "Incluidas"),
+    "Arroz: " + ($("sinArroz").checked ? "No desea" : "Incluido"),
     "",
     "UBICACIÓN REAL DE ENTREGA",
     ubicacion,
     "Coordenadas: " + latitud + ", " + longitud,
     "",
-    "Confirmo los términos: una vez confirmado el pedido no se pueden realizar cambios. Cualquier pedido adicional después de la entrega deberá hacerse por separado."
+    "TÉRMINOS Y CONDICIONES",
+    "Una vez confirmado el pedido no se pueden realizar cambios. Después de la entrega, cualquier pedido adicional deberá realizarse por separado."
   ].join("\n");
 
-  const whatsappURL =
-    "https://wa.me/" + WHATSAPP_NUMBER +
+  const whatsappURL = "https://wa.me/" + WHATSAPP_NUMBER +
     "?text=" + encodeURIComponent(mensaje);
 
   window.location.href = whatsappURL;
@@ -548,7 +371,5 @@ $("pedidoForm").addEventListener("submit", event => {
 
 actualizarResumen();
 </script>
-
 </body>
-  </html>
-              
+</html>
